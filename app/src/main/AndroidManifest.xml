@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PictureReminder">
         <activity
+            android:name=".changeReminder"
+            android:exported="false" />
+        <activity
             android:name=".AddReminder"
             android:exported="false" />
         <activity

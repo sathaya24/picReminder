@@ -4,16 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#efefef"
-    tools:context=".AddReminder">
+    tools:context=".changeReminder">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="350dp"
-        android:layout_height="538dp"
+        android:layout_width="315dp"
+        android:layout_height="629dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="95dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="50dp"
         android:background="#fff"
         android:backgroundTint="#fff"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -49,7 +48,6 @@
             android:inputType="date"
             app:layout_constraintBottom_toTopOf="@+id/timeRe"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nameRe" />
 
@@ -90,14 +88,28 @@
             android:layout_height="48dp"
             android:layout_marginStart="120dp"
             android:layout_marginEnd="15dp"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="84dp"
             android:background="@drawable/border_cancel"
             android:text="@string/cancel"
             android:textColor="@android:color/holo_orange_dark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/createBtn"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="220dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/border_delete"
+            android:text="@string/delete"
+            android:textColor="@android:color/holo_red_dark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/createBtn" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
