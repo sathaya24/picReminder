@@ -1,12 +1,14 @@
 package ch.tha.picturereminder;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,6 +19,7 @@ public class AddReminder extends AppCompatActivity {
     private EditText dateTxt;
     private EditText timeTxt;
     private DatePickerDialog datePickerDialog;
+    private TimePickerDialog timePickerDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +42,7 @@ public class AddReminder extends AppCompatActivity {
                 datePickerDialog = new DatePickerDialog(AddReminder.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        dateTxt.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+                        dateTxt.setText(dayOfMonth + "." + (month + 1) + "." + year);
                     }
                 }, year, month, day);
                 datePickerDialog.show();
@@ -54,6 +57,23 @@ public class AddReminder extends AppCompatActivity {
                 timeTxt.setText("");
                 dateTxt.setText("");
                 startActivity(intent);
+            }
+        });
+
+        timeTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                int hour = calendar.get(Calendar.HOUR_OF_DAY);
+                int minute = calendar.get(Calendar.MINUTE);
+
+                timePickerDialog = new TimePickerDialog(AddReminder.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        timeTxt.setText(hourOfDay + ":" + minute);
+                    }
+                }, hour, minute, true);
+                timePickerDialog.show();
             }
         });
     }
