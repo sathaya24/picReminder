@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">pictureReminder</string>
+    <string name="plus">+</string>
+    <string name="cancel">cancel</string>
+    <string name="create">create</string>
+    <string name="delete">delete</string>
+    <string name="save">save</string>
 </resources>
