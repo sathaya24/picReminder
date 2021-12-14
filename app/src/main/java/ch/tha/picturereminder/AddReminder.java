@@ -23,7 +23,6 @@ import androidx.core.content.ContextCompat;
 
 import java.util.Calendar;
 
-//todo: save picture
 //todo: sharedPreference
 //todo: notification
 
