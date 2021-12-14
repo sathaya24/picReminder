@@ -1,17 +1,12 @@
 package ch.tha.picturereminder;
 
-import android.graphics.Bitmap;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 public class Reminder {
     private String title;
     private String date;
     private String time;
-    private Bitmap image;
+    private String image;
 
-    public Reminder(String title, String date, String time, Bitmap image) {
+    public Reminder(String title, String date, String time, String image) {
         this.title = title;
         this.date = date;
         this.time = time;
@@ -42,11 +37,11 @@ public class Reminder {
         this.time = time;
     }
 
-    public Bitmap getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Bitmap image) {
+    public void setImage(String image) {
         this.image = image;
     }
 }

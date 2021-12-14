@@ -3,18 +3,20 @@ package ch.tha.picturereminder;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private ListView listView;
-    private ArrayList<Reminder>myReminders;
+    private ArrayList<Reminder> myReminders;
+    private Reminder reminder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,20 +27,17 @@ public class MainActivity extends AppCompatActivity {
         addBtn.setOnClickListener(view -> addReminder());
 
         listView = (ListView) findViewById(R.id.listReminder);
-        myReminders=new ArrayList<>();
+        myReminders = new ArrayList<>();
 
-        Intent intent = getIntent();
-        String title = intent.getStringExtra("titleReminder");
-        String date = intent.getStringExtra("dateReminder");
-        String time = intent.getStringExtra("timeReminder");
-        Bitmap image = intent.getParcelableExtra("imageReminder");
-
-        Reminder reminder = new Reminder(title,date,time,image);
-
+        reminder = new Reminder("Hello", "2021-12-14", "21:52","image");
+        myReminders.add(reminder);
+        myReminders.add(reminder);
         myReminders.add(reminder);
 
-        showReminder();
+        ReminderListAdapter adapter = new ReminderListAdapter(this,R.layout.list_view_layout,myReminders);
 
+        listView.setAdapter(adapter);
+//        arrayAdapter.notifyDataSetChanged();
     }
 
     private void addReminder() {
@@ -46,9 +45,4 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void showReminder(){
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,myReminders);
-        listView.setAdapter(arrayAdapter);
-
-    }
 }
