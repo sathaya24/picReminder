@@ -6,7 +6,6 @@ import android.app.TimePickerDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.widget.Button;
@@ -16,12 +15,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import java.util.Calendar;
+
+//TODO: take Picture
+//todo: save picture
+//todo: sharedPreference
+//todo: notification
 
 public class AddReminder extends AppCompatActivity {
     private EditText titleTxt;
@@ -29,6 +32,8 @@ public class AddReminder extends AppCompatActivity {
     private EditText timeTxt;
     private DatePickerDialog datePickerDialog;
     private TimePickerDialog timePickerDialog;
+    private TextView errorTxt;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,16 +45,29 @@ public class AddReminder extends AppCompatActivity {
         timeTxt = (EditText) findViewById(R.id.timeRe);
         Button cancelBtn = findViewById(R.id.cancelBtnAdd);
         Button createBtn = findViewById(R.id.createBtn);
+        Button cameraBtn = findViewById(R.id.photoBtn);
 
         dateTxt.setOnClickListener(view -> popDatePickerDialog());
         cancelBtn.setOnClickListener(view -> onClickCancel());
         timeTxt.setOnClickListener(view -> poptimePickerDialog());
         createBtn.setOnClickListener(view -> onClickCreate());
+        cameraBtn.setOnClickListener(view -> takePicture());
 
+        //ask for the permission
         if (ContextCompat.checkSelfPermission(AddReminder.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(AddReminder.this, new String[]{
                     Manifest.permission.CAMERA
             }, 100);
+        }
+    }
+
+    private void takePicture() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        //TODO:THE NEW WAY
+        try {
+            startActivityForResult(intent, 100);
+        } catch (ActivityNotFoundException e) {
+            errorTxt.setText("The camera ain't working ;(");
         }
     }
 
