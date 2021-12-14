@@ -36,6 +36,7 @@ public class AddReminder extends AppCompatActivity {
     private TextView errorTxt;
     private ImageView imageView;
     static final int REQUEST_IMAGE_CAPTURE = 100;
+    private Bitmap takenImage;
 
 
     @Override
@@ -122,6 +123,7 @@ public class AddReminder extends AppCompatActivity {
         intent.putExtra("titleReminder", titleStr);
         intent.putExtra("dateReminder", dateStr);
         intent.putExtra("timeReminder", timeStr);
+        intent.putExtra("imageReminder",takenImage);
         startActivity(intent);
     }
 
@@ -131,6 +133,7 @@ public class AddReminder extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
+            takenImage = imageBitmap;
             imageView.setImageBitmap(imageBitmap);
         }
     }
