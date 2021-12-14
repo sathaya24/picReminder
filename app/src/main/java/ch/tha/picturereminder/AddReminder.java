@@ -1,16 +1,25 @@
 package ch.tha.picturereminder;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Parcelable;
+import android.provider.MediaStore;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import java.util.Calendar;
 
@@ -36,6 +45,12 @@ public class AddReminder extends AppCompatActivity {
         cancelBtn.setOnClickListener(view -> onClickCancel());
         timeTxt.setOnClickListener(view -> poptimePickerDialog());
         createBtn.setOnClickListener(view -> onClickCreate());
+
+        if (ContextCompat.checkSelfPermission(AddReminder.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(AddReminder.this, new String[]{
+                    Manifest.permission.CAMERA
+            }, 100);
+        }
     }
 
     private void popDatePickerDialog() {

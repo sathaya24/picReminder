@@ -123,6 +123,21 @@
             app:layout_constraintTop_toBottomOf="@+id/timeRe"
             app:layout_constraintVertical_bias="0.8" />
 
+        <TextView
+            android:id="@+id/errorPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="22dp"
+            tools:layout_editor_absoluteY="354dp" />
+
+        <ImageView
+            android:id="@+id/imageCamera"
+            android:layout_width="162dp"
+            android:layout_height="145dp"
+            tools:layout_editor_absoluteX="150dp"
+            tools:layout_editor_absoluteY="283dp"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
