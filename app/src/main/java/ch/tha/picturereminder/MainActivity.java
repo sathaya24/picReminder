@@ -3,9 +3,6 @@ package ch.tha.picturereminder;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -29,15 +26,18 @@ public class MainActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listReminder);
         myReminders = new ArrayList<>();
 
-        reminder = new Reminder("Hello", "2021-12-14", "21:52","image");
-        myReminders.add(reminder);
-        myReminders.add(reminder);
-        myReminders.add(reminder);
+        Intent intent = getIntent();
+        String title = intent.getStringExtra("titleReminder");
+        String date = intent.getStringExtra("dateReminder");
+        String time = intent.getStringExtra("timeReminder");
+        Bitmap image = intent.getParcelableExtra("imageReminder");
+        Reminder remi = new Reminder(title, date, time, image);
+        myReminders.add(remi);
 
-        ReminderListAdapter adapter = new ReminderListAdapter(this,R.layout.list_view_layout,myReminders);
+        ReminderListAdapter adapter = new ReminderListAdapter(this, R.layout.list_view_layout, myReminders);
 
         listView.setAdapter(adapter);
-//        arrayAdapter.notifyDataSetChanged();
+//        ReminderListAdapter.notifyDataSetChanged();
     }
 
     private void addReminder() {

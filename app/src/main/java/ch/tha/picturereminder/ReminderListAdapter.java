@@ -1,10 +1,12 @@
 package ch.tha.picturereminder;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 public class ReminderListAdapter extends ArrayAdapter<Reminder> {
     private Context context;
     private int resource;
+    private int lastPosition = -1;
 
     public ReminderListAdapter(Context context, int resource, ArrayList<Reminder> objects) {
         super(context, resource, objects);
@@ -27,7 +30,7 @@ public class ReminderListAdapter extends ArrayAdapter<Reminder> {
         String title = getItem(position).getTitle();
         String date =  getItem(position).getDate();
         String time = getItem(position).getTime();
-        String image = getItem(position).getImage();
+        Bitmap image = getItem(position).getImage();
 
         Reminder reminder = new Reminder(title,date,time,image);
 
@@ -37,10 +40,12 @@ public class ReminderListAdapter extends ArrayAdapter<Reminder> {
         TextView titleTvt =(TextView) convertView.findViewById(R.id.titleItem);
         TextView dateTvt =(TextView) convertView.findViewById(R.id.dateItem);
         TextView timeTvt =(TextView) convertView.findViewById(R.id.timeItem);
+        ImageView imageView =(ImageView) convertView.findViewById(R.id.imageItem);
 
         titleTvt.setText(title);
         dateTvt.setText(date);
         timeTvt.setText(time);
+        imageView.setImageBitmap(image);
 
         return convertView;
     }
