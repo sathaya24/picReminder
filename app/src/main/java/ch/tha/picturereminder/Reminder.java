@@ -8,8 +8,10 @@ public class Reminder {
     private LocalDate date;
     private LocalTime time;
 
-    public Reminder() {
-
+    public Reminder(String title, LocalDate date, LocalTime time) {
+        this.title = title;
+        this.date = date;
+        this.time = time;
     }
 
     public String getTitle() {

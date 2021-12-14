@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Calendar;
 
 public class AddReminder extends AppCompatActivity {
-    Reminder reminder = new Reminder();
     private EditText titleTxt;
     private EditText dateTxt;
     private EditText timeTxt;
@@ -85,7 +84,6 @@ public class AddReminder extends AppCompatActivity {
         intent.putExtra("titelReminder", titleStr);
         intent.putExtra("dateReminder", dateStr);
         intent.putExtra("timeReminder", timeStr);
-        intent.putExtra("reminder", (Parcelable) reminder);
         startActivity(intent);
     }
 }
