@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
@@ -18,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Reminder> myReminders;
     private Reminder reminder;
     private SharedPreferences preferences;
-    public  static final String PREFERENCE_REMINDER="preference_reminder";
+    public static final String PREFERENCE_REMINDER = "preference_reminder";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,20 +32,11 @@ public class MainActivity extends AppCompatActivity {
         this.preferences = getPreferences(MODE_PRIVATE);
 
         listView = (ListView) findViewById(R.id.listReminder);
-        myReminders = new ArrayList<>();
-
-        Intent intent = getIntent();
-        String title = intent.getStringExtra("titleReminder");
-        String date = intent.getStringExtra("dateReminder");
-        String time = intent.getStringExtra("timeReminder");
-        Bitmap image = intent.getParcelableExtra("imageReminder");
-        reminder = new Reminder(title, date, time, image);
-        myReminders.add(reminder);
+        myReminders = new ArrayList<Reminder>();
 
         ReminderListAdapter adapter = new ReminderListAdapter(this, R.layout.list_view_layout, myReminders);
-
+        addReminderItem();
         listView.setAdapter(adapter);
-//        ReminderListAdapter.notifyDataSetChanged();
     }
 
     private void addReminder() {
@@ -52,12 +44,22 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void saveReminder(){
+    private void saveReminder() {
         SharedPreferences.Editor editor = preferences.edit();
         Gson gson = new Gson();
         String json = gson.toJson(reminder);
-        editor.putString("myReminder",json);
+        editor.putString("myReminder", json);
         editor.apply();
     }
 
+    private void addReminderItem() {
+        Intent intent = getIntent();
+        String title = intent.getStringExtra("titleReminder");
+        String date = intent.getStringExtra("dateReminder");
+        String time = intent.getStringExtra("timeReminder");
+        Bitmap image = intent.getParcelableExtra("imageReminder");
+        reminder = new Reminder(title, date, time, image);
+        myReminders.add(reminder);
+        saveReminder();
+    }
 }
