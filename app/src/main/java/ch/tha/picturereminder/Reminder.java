@@ -7,11 +7,11 @@ import java.time.LocalTime;
 
 public class Reminder {
     private String title;
-    private LocalDate date;
-    private LocalTime time;
+    private String date;
+    private String time;
     private Bitmap image;
 
-    public Reminder(String title, LocalDate date, LocalTime time, Bitmap image) {
+    public Reminder(String title, String date, String time, Bitmap image) {
         this.title = title;
         this.date = date;
         this.time = time;
@@ -26,19 +26,19 @@ public class Reminder {
         this.title = title;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public LocalTime getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(LocalTime time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
