@@ -6,6 +6,7 @@ import android.app.TimePickerDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.widget.Button;
@@ -15,13 +16,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import java.util.Calendar;
 
-//TODO: take Picture
 //todo: save picture
 //todo: sharedPreference
 //todo: notification
@@ -33,6 +34,8 @@ public class AddReminder extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
     private TimePickerDialog timePickerDialog;
     private TextView errorTxt;
+    private ImageView imageView;
+    static final int REQUEST_IMAGE_CAPTURE = 100;
 
 
     @Override
@@ -43,6 +46,8 @@ public class AddReminder extends AppCompatActivity {
         titleTxt = (EditText) findViewById(R.id.nameRe);
         dateTxt = (EditText) findViewById(R.id.dateRe);
         timeTxt = (EditText) findViewById(R.id.timeRe);
+        errorTxt = (TextView) findViewById(R.id.errorPhoto);
+        imageView = (ImageView) findViewById(R.id.imageCamera);
         Button cancelBtn = findViewById(R.id.cancelBtnAdd);
         Button createBtn = findViewById(R.id.createBtn);
         Button cameraBtn = findViewById(R.id.photoBtn);
@@ -65,7 +70,7 @@ public class AddReminder extends AppCompatActivity {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         //TODO:THE NEW WAY
         try {
-            startActivityForResult(intent, 100);
+            startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
         } catch (ActivityNotFoundException e) {
             errorTxt.setText("The camera ain't working ;(");
         }
@@ -114,9 +119,19 @@ public class AddReminder extends AppCompatActivity {
         String dateStr = dateTxt.getText().toString();
         String timeStr = timeTxt.getText().toString();
 
-        intent.putExtra("titelReminder", titleStr);
+        intent.putExtra("titleReminder", titleStr);
         intent.putExtra("dateReminder", dateStr);
         intent.putExtra("timeReminder", timeStr);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            imageView.setImageBitmap(imageBitmap);
+        }
     }
 }
