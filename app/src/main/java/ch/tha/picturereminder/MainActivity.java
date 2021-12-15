@@ -10,8 +10,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
@@ -46,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(getApplicationContext(), changeReminder.class);
+                Intent i = new Intent(getApplicationContext(), ChangeReminder.class);
                 Reminder remi = adapter.getItem(position);
                 i.putExtra("titleItem", remi.getTitle());
                 i.putExtra("dateItem", remi.getDate());

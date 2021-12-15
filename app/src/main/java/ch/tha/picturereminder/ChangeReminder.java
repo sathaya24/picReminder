@@ -1,19 +1,24 @@
 package ch.tha.picturereminder;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class changeReminder extends AppCompatActivity {
+import java.util.Calendar;
+
+public class ChangeReminder extends AppCompatActivity {
     private EditText titleExt;
     private EditText dateExt;
     private EditText timeExt;
     private ImageView imageView;
+    private DatePickerDialog datePickerDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +37,27 @@ public class changeReminder extends AppCompatActivity {
         dateExt.setText(intent.getStringExtra("dateItem"));
         timeExt.setText(intent.getStringExtra("timeItem"));
         imageView.setImageBitmap(intent.getParcelableExtra("imageItem"));
+
+        dateExt.setOnClickListener(view -> popDatePickerDialog());
     }
-    private void cancelChange(){
-        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+
+    private void cancelChange() {
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);
+    }
+
+    private void popDatePickerDialog() {
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int month = calendar.get(Calendar.MONTH);
+        int year = calendar.get(Calendar.YEAR);
+
+        datePickerDialog = new DatePickerDialog(ChangeReminder.this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                dateExt.setText(dayOfMonth + "." + (month + 1) + "." + year);
+            }
+        }, year, month, day);
+        datePickerDialog.show();
     }
 }
