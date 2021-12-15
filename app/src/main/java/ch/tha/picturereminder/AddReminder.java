@@ -99,7 +99,7 @@ public class AddReminder extends AppCompatActivity {
         timePickerDialog = new TimePickerDialog(AddReminder.this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                timeTxt.setText(hourOfDay + ":" + minute);
+                timeTxt.setText(String.format("%02d:%02d",hourOfDay,minute));
             }
         }, hour, minute, true);
         timePickerDialog.show();
