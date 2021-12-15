@@ -67,6 +67,41 @@
             app:layout_constraintTop_toBottomOf="@+id/dateRe" />
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/photoBtnRe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="250dp"
+            android:layout_marginBottom="200dp"
+            android:background="@drawable/border_violette"
+            android:drawableLeft="@drawable/camera_icon"
+            android:text="@string/camera"
+            android:textColor="@android:color/holo_purple"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.078"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/timeRe"
+            app:layout_constraintVertical_bias="0.207" />
+
+        <ImageView
+            android:id="@+id/imageRe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="89dp"
+            android:layout_marginTop="31dp"
+            android:layout_marginEnd="47dp"
+            android:layout_marginBottom="51dp"
+            app:layout_constraintBottom_toTopOf="@+id/createBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.066"
+            app:layout_constraintStart_toEndOf="@+id/photoBtnRe"
+            app:layout_constraintTop_toBottomOf="@+id/timeRe"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/ic_launcher_background" />
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/createBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -111,5 +146,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/createBtn" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

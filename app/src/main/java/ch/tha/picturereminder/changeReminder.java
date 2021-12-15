@@ -25,11 +25,16 @@ public class changeReminder extends AppCompatActivity {
         imageView = (ImageView) findViewById(R.id.imageRe);
         Button cameraBtn = findViewById(R.id.photoBtnRe);
         Button cancelBtn = findViewById(R.id.cancelBtnAdd);
+        cancelBtn.setOnClickListener(view -> cancelChange());
 
         Intent intent = getIntent();
         titleExt.setText(intent.getStringExtra("titleItem"));
         dateExt.setText(intent.getStringExtra("dateItem"));
         timeExt.setText(intent.getStringExtra("timeItem"));
         imageView.setImageBitmap(intent.getParcelableExtra("imageItem"));
+    }
+    private void cancelChange(){
+        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+        startActivity(intent);
     }
 }
