@@ -28,19 +28,19 @@ public class ReminderListAdapter extends ArrayAdapter<Reminder> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         String title = getItem(position).getTitle();
-        String date =  getItem(position).getDate();
+        String date = getItem(position).getDate();
         String time = getItem(position).getTime();
         Bitmap image = getItem(position).getImage();
 
-        Reminder reminder = new Reminder(title,date,time,image);
+        Reminder reminder = new Reminder(title, date, time, image);
 
         LayoutInflater inflater = LayoutInflater.from(context);
-        convertView = inflater.inflate(resource,parent,false);
+        convertView = inflater.inflate(resource, parent, false);
 
-        TextView titleTvt =(TextView) convertView.findViewById(R.id.titleItem);
-        TextView dateTvt =(TextView) convertView.findViewById(R.id.dateItem);
-        TextView timeTvt =(TextView) convertView.findViewById(R.id.timeItem);
-        ImageView imageView =(ImageView) convertView.findViewById(R.id.imageItem);
+        TextView titleTvt = (TextView) convertView.findViewById(R.id.titleItem);
+        TextView dateTvt = (TextView) convertView.findViewById(R.id.dateItem);
+        TextView timeTvt = (TextView) convertView.findViewById(R.id.timeItem);
+        ImageView imageView = (ImageView) convertView.findViewById(R.id.imageItem);
 
         titleTvt.setText(title);
         dateTvt.setText(date);
