@@ -1,5 +1,6 @@
 package ch.tha.picturereminder;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -19,10 +20,12 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private ListView listView;
     private ArrayList<Reminder> myReminders;
+    private Reminder defRemi;
     private Reminder reminder;
     private SharedPreferences preferences;
     public static final String PREFERENCE_REMINDER = "preference_reminder";
     private ReminderListAdapter adapter;
+    private Bitmap defImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +34,22 @@ public class MainActivity extends AppCompatActivity {
 
         Button addBtn = findViewById(R.id.addBtn);
         addBtn.setOnClickListener(view -> addReminder());
-
         this.preferences = getPreferences(MODE_PRIVATE);
-
         listView = (ListView) findViewById(R.id.listReminder);
         myReminders = new ArrayList<Reminder>();
-
+        defRemi = new Reminder("default", "dd:mm:yyyy", "hh:mm", defImage);
         adapter = new ReminderListAdapter(this, R.layout.list_view_layout, myReminders);
-        myReminders.add(addReminderItem());
+        Intent intent = getIntent();
+        String title = intent.getStringExtra("titleReminder");
+        String date = intent.getStringExtra("dateReminder");
+        String time = intent.getStringExtra("timeReminder");
+        Bitmap image = intent.getParcelableExtra("imageReminder");
+        reminder = new Reminder(title, date, time, image);
+        myReminders.add(defRemi);
+        saveReminder();
+        if (defRemi != reminder) {
+            myReminders.add(reminder);
+        }
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
