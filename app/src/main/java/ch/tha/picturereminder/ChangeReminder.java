@@ -2,12 +2,15 @@ package ch.tha.picturereminder;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +24,9 @@ public class ChangeReminder extends AppCompatActivity {
     private ImageView imageView;
     private DatePickerDialog datePickerDialog;
     private TimePickerDialog timePickerDialog;
+    static final int REQUEST_IMAGE_CAPTURE = 100;
+    private TextView errorTxt;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +36,7 @@ public class ChangeReminder extends AppCompatActivity {
         dateExt = (EditText) findViewById(R.id.dateRe);
         timeExt = (EditText) findViewById(R.id.timeRe);
         imageView = (ImageView) findViewById(R.id.imageRe);
+        errorTxt = (TextView) findViewById(R.id.errorRe);
         Button cameraBtn = findViewById(R.id.photoBtnRe);
         Button cancelBtn = findViewById(R.id.cancelBtnAdd);
         cancelBtn.setOnClickListener(view -> cancelChange());
@@ -42,6 +49,7 @@ public class ChangeReminder extends AppCompatActivity {
 
         dateExt.setOnClickListener(view -> popDatePickerDialog());
         timeExt.setOnClickListener(view -> poptimePickerDialog());
+        cameraBtn.setOnClickListener(view -> takePicture());
     }
 
     private void cancelChange() {
@@ -76,5 +84,14 @@ public class ChangeReminder extends AppCompatActivity {
             }
         }, hour, minute, true);
         timePickerDialog.show();
+    }
+
+    private void takePicture() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        try {
+            startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
+        } catch (ActivityNotFoundException e) {
+            errorTxt.setText("The camera ain't working ;(");
+        }
     }
 }

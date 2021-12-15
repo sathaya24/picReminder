@@ -68,7 +68,6 @@ public class AddReminder extends AppCompatActivity {
 
     private void takePicture() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        //TODO:THE NEW WAY
         try {
             startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
         } catch (ActivityNotFoundException e) {
