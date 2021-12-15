@@ -49,7 +49,7 @@ public class AddReminder extends AppCompatActivity {
         errorTxt = (TextView) findViewById(R.id.errorPhoto);
         imageView = (ImageView) findViewById(R.id.imageCamera);
         Button cancelBtn = findViewById(R.id.cancelBtnAdd);
-        Button createBtn = findViewById(R.id.createBtn);
+        Button createBtn = findViewById(R.id.saveBtn);
         Button cameraBtn = findViewById(R.id.photoBtn);
 
         dateTxt.setOnClickListener(view -> popDatePickerDialog());
@@ -114,13 +114,9 @@ public class AddReminder extends AppCompatActivity {
 
     private void onClickCreate() {
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        String titleStr = titleTxt.getText().toString();
-        String dateStr = dateTxt.getText().toString();
-        String timeStr = timeTxt.getText().toString();
-
-        intent.putExtra("titleReminder", titleStr);
-        intent.putExtra("dateReminder", dateStr);
-        intent.putExtra("timeReminder", timeStr);
+        intent.putExtra("titleReminder", titleTxt.getText().toString());
+        intent.putExtra("dateReminder", dateTxt.getText().toString());
+        intent.putExtra("timeReminder", timeTxt.getText().toString());
         intent.putExtra("imageReminder",takenImage);
         startActivity(intent);
     }

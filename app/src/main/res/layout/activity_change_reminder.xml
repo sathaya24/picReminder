@@ -45,6 +45,7 @@
             android:layout_marginEnd="125dp"
             android:layout_marginBottom="30dp"
             android:ems="10"
+            android:focusable="false"
             android:inputType="date"
             app:layout_constraintBottom_toTopOf="@+id/timeRe"
             app:layout_constraintEnd_toEndOf="parent"
@@ -60,6 +61,7 @@
             android:layout_marginEnd="125dp"
             android:layout_marginBottom="195dp"
             android:ems="10"
+            android:focusable="false"
             android:inputType="time"
             app:layout_constraintBottom_toTopOf="@+id/cancelBtnAdd"
             app:layout_constraintEnd_toEndOf="parent"
@@ -93,7 +95,7 @@
             android:layout_marginTop="31dp"
             android:layout_marginEnd="47dp"
             android:layout_marginBottom="51dp"
-            app:layout_constraintBottom_toTopOf="@+id/createBtn"
+            app:layout_constraintBottom_toTopOf="@+id/saveBtn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.621"
             app:layout_constraintStart_toEndOf="@+id/photoBtnRe"
@@ -102,7 +104,7 @@
             app:srcCompat="@drawable/ic_launcher_background" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/createBtn"
+            android:id="@+id/saveBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
@@ -110,7 +112,7 @@
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="40dp"
             android:background="@drawable/border_create"
-            android:text="@string/create"
+            android:text="@string/save"
             android:textColor="@android:color/holo_green_dark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -128,11 +130,11 @@
             android:text="@string/cancel"
             android:textColor="@android:color/holo_orange_dark"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/createBtn"
+            app:layout_constraintEnd_toStartOf="@+id/saveBtn"
             app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button"
+            android:id="@+id/deleteBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="220dp"
@@ -145,7 +147,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/createBtn" />
+            app:layout_constraintTop_toBottomOf="@+id/saveBtn" />
 
         <TextView
             android:id="@+id/errorRe"

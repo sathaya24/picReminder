@@ -41,17 +41,22 @@ public class ChangeReminder extends AppCompatActivity {
         errorTxt = (TextView) findViewById(R.id.errorRe);
         Button cameraBtn = findViewById(R.id.photoBtnRe);
         Button cancelBtn = findViewById(R.id.cancelBtnAdd);
+        Button saveBtn = findViewById(R.id.saveBtn);
+        Button deleteBtn = findViewById(R.id.deleteBtn);
         cancelBtn.setOnClickListener(view -> cancelChange());
 
         Intent intent = getIntent();
         titleExt.setText(intent.getStringExtra("titleItem"));
         dateExt.setText(intent.getStringExtra("dateItem"));
         timeExt.setText(intent.getStringExtra("timeItem"));
-        imageView.setImageBitmap(intent.getParcelableExtra("imageItem"));
+        takenImage = intent.getParcelableExtra("imageItem");
+        imageView.setImageBitmap(takenImage);
 
         dateExt.setOnClickListener(view -> popDatePickerDialog());
         timeExt.setOnClickListener(view -> poptimePickerDialog());
         cameraBtn.setOnClickListener(view -> takePicture());
+        saveBtn.setOnClickListener(view -> onClickSave());
+
     }
 
     private void cancelChange() {
@@ -97,14 +102,25 @@ public class ChangeReminder extends AppCompatActivity {
         }
     }
 
+    private void onClickSave() {
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.putExtra("titleReminder", titleExt.getText().toString());
+        intent.putExtra("dateReminder", dateExt.getText().toString());
+        intent.putExtra("timeReminder", timeExt.getText().toString());
+        intent.putExtra("imageReminder", takenImage);
+        startActivity(intent);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
-            takenImage = imageBitmap;
-            imageView.setImageBitmap(imageBitmap);
+            if (takenImage != imageBitmap) {
+                takenImage = imageBitmap;
+                imageView.setImageBitmap(imageBitmap);
+            }
         }
     }
 }

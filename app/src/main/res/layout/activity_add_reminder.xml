@@ -75,7 +75,7 @@
             app:layout_constraintTop_toBottomOf="@+id/dateRe" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/createBtn"
+            android:id="@+id/saveBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
@@ -101,7 +101,7 @@
             android:text="@string/cancel"
             android:textColor="@android:color/holo_orange_dark"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/createBtn"
+            app:layout_constraintEnd_toStartOf="@+id/saveBtn"
             app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -138,7 +138,7 @@
             android:layout_marginTop="31dp"
             android:layout_marginEnd="47dp"
             android:layout_marginBottom="51dp"
-            app:layout_constraintBottom_toTopOf="@+id/createBtn"
+            app:layout_constraintBottom_toTopOf="@+id/saveBtn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.591"
             app:layout_constraintStart_toEndOf="@+id/photoBtn"
