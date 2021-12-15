@@ -10,18 +10,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
 public class ReminderListAdapter extends ArrayAdapter<Reminder> {
     private Context context;
     private int resource;
+    private ArrayList<Reminder> listReminder;
     private int lastPosition = -1;
 
     public ReminderListAdapter(Context context, int resource, ArrayList<Reminder> objects) {
         super(context, resource, objects);
         this.context = context;
         this.resource=resource;
+        this.listReminder=objects;
     }
 
     @NonNull
@@ -48,5 +51,10 @@ public class ReminderListAdapter extends ArrayAdapter<Reminder> {
         imageView.setImageBitmap(image);
 
         return convertView;
+    }
+
+    @Override
+    public Reminder getItem(int position) {
+        return listReminder.get(position);
     }
 }

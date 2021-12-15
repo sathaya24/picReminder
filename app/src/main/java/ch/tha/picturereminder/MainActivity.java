@@ -45,7 +45,12 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(getApplicationContext(),changeReminder.class);
+                Intent i = new Intent(getApplicationContext(), changeReminder.class);
+                Reminder remi = adapter.getItem(position);
+                i.putExtra("titleItem", remi.getTitle());
+                i.putExtra("dateItem", remi.getDate());
+                i.putExtra("timeItem", remi.getTime());
+                i.putExtra("imageItem", remi.getImage());
                 startActivity(i);
             }
         });
@@ -63,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         String json = gson.toJson(reminder);
         editor.putString("myReminder", json);
         editor.apply();
-        Toast.makeText(this, "reminder is saved",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "reminder is saved", Toast.LENGTH_SHORT).show();
     }
 
     private Reminder addReminderItem() {
