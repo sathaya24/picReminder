@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
@@ -39,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
 
         adapter = new ReminderListAdapter(this, R.layout.list_view_layout, myReminders);
         myReminders.add(addReminderItem());
-        retrieveReminder();
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         String json = gson.toJson(reminder);
         editor.putString("myReminder", json);
         editor.apply();
+        adapter.notifyDataSetChanged();
         Toast.makeText(this, "reminder is saved", Toast.LENGTH_SHORT).show();
     }
 
@@ -86,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         Gson gson = new Gson();
         String json = preferences.getString("myReminder", "");
         Reminder remi = gson.fromJson(json, Reminder.class);
-        adapter.add(remi);
+        myReminders.add(remi);
+        adapter.notifyDataSetChanged();
     }
 }

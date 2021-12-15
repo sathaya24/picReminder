@@ -87,18 +87,18 @@
 
         <ImageView
             android:id="@+id/imageRe"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="160dp"
+            android:layout_height="150dp"
             android:layout_marginStart="89dp"
             android:layout_marginTop="31dp"
             android:layout_marginEnd="47dp"
             android:layout_marginBottom="51dp"
             app:layout_constraintBottom_toTopOf="@+id/createBtn"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.066"
+            app:layout_constraintHorizontal_bias="0.621"
             app:layout_constraintStart_toEndOf="@+id/photoBtnRe"
             app:layout_constraintTop_toBottomOf="@+id/timeRe"
-            app:layout_constraintVertical_bias="1.0"
+            app:layout_constraintVertical_bias="0.586"
             app:srcCompat="@drawable/ic_launcher_background" />
 
         <androidx.appcompat.widget.AppCompatButton
