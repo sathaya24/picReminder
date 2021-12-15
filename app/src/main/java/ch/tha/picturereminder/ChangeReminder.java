@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.widget.Button;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Calendar;
@@ -26,7 +28,7 @@ public class ChangeReminder extends AppCompatActivity {
     private TimePickerDialog timePickerDialog;
     static final int REQUEST_IMAGE_CAPTURE = 100;
     private TextView errorTxt;
-
+    private Bitmap takenImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +94,17 @@ public class ChangeReminder extends AppCompatActivity {
             startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
         } catch (ActivityNotFoundException e) {
             errorTxt.setText("The camera ain't working ;(");
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            takenImage = imageBitmap;
+            imageView.setImageBitmap(imageBitmap);
         }
     }
 }
