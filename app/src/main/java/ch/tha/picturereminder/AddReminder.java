@@ -30,8 +30,6 @@ public class AddReminder extends AppCompatActivity {
     private EditText titleTxt;
     private EditText dateTxt;
     private EditText timeTxt;
-    private DatePickerDialog datePickerDialog;
-    private TimePickerDialog timePickerDialog;
     private TextView errorTxt;
     private ImageView imageView;
     static final int REQUEST_IMAGE_CAPTURE = 100;
@@ -81,7 +79,7 @@ public class AddReminder extends AppCompatActivity {
         int month = calendar.get(Calendar.MONTH);
         int year = calendar.get(Calendar.YEAR);
 
-        datePickerDialog = new DatePickerDialog(AddReminder.this, new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(AddReminder.this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 dateTxt.setText(dayOfMonth + "." + (month + 1) + "." + year);
@@ -95,10 +93,10 @@ public class AddReminder extends AppCompatActivity {
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int minute = calendar.get(Calendar.MINUTE);
 
-        timePickerDialog = new TimePickerDialog(AddReminder.this, new TimePickerDialog.OnTimeSetListener() {
+        TimePickerDialog timePickerDialog = new TimePickerDialog(AddReminder.this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                timeTxt.setText(String.format("%02d:%02d",hourOfDay,minute));
+                timeTxt.setText(String.format("%02d:%02d", hourOfDay, minute));
             }
         }, hour, minute, true);
         timePickerDialog.show();

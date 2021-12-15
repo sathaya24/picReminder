@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,8 +25,6 @@ public class ChangeReminder extends AppCompatActivity {
     private EditText dateExt;
     private EditText timeExt;
     private ImageView imageView;
-    private DatePickerDialog datePickerDialog;
-    private TimePickerDialog timePickerDialog;
     static final int REQUEST_IMAGE_CAPTURE = 100;
     private TextView errorTxt;
     private Bitmap takenImage;
@@ -56,6 +55,7 @@ public class ChangeReminder extends AppCompatActivity {
         timeExt.setOnClickListener(view -> poptimePickerDialog());
         cameraBtn.setOnClickListener(view -> takePicture());
         saveBtn.setOnClickListener(view -> onClickSave());
+        deleteBtn.setOnClickListener(view -> onClickDelete());
 
     }
 
@@ -70,7 +70,7 @@ public class ChangeReminder extends AppCompatActivity {
         int month = calendar.get(Calendar.MONTH);
         int year = calendar.get(Calendar.YEAR);
 
-        datePickerDialog = new DatePickerDialog(ChangeReminder.this, new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(ChangeReminder.this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 dateExt.setText(dayOfMonth + "." + (month + 1) + "." + year);
@@ -79,12 +79,18 @@ public class ChangeReminder extends AppCompatActivity {
         datePickerDialog.show();
     }
 
+    private void onClickDelete() {
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+        Toast.makeText(this, "Delete isn't working, we are working on it.", Toast.LENGTH_SHORT).show();
+    }
+
     private void poptimePickerDialog() {
         Calendar calendar = Calendar.getInstance();
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int minute = calendar.get(Calendar.MINUTE);
 
-        timePickerDialog = new TimePickerDialog(ChangeReminder.this, new TimePickerDialog.OnTimeSetListener() {
+        TimePickerDialog timePickerDialog = new TimePickerDialog(ChangeReminder.this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 timeExt.setText(String.format("%02d:%02d", hourOfDay, minute));
