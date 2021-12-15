@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PictureReminder">
         <activity
-            android:name=".changeReminder"
+            android:name=".ChangeReminder"
             android:exported="false" />
         <activity
             android:name=".AddReminder"

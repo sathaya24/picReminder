@@ -1,12 +1,14 @@
 package ch.tha.picturereminder;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TimePicker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,7 +20,7 @@ public class ChangeReminder extends AppCompatActivity {
     private EditText timeExt;
     private ImageView imageView;
     private DatePickerDialog datePickerDialog;
-
+    private TimePickerDialog timePickerDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,7 @@ public class ChangeReminder extends AppCompatActivity {
         imageView.setImageBitmap(intent.getParcelableExtra("imageItem"));
 
         dateExt.setOnClickListener(view -> popDatePickerDialog());
+        timeExt.setOnClickListener(view -> poptimePickerDialog());
     }
 
     private void cancelChange() {
@@ -59,5 +62,19 @@ public class ChangeReminder extends AppCompatActivity {
             }
         }, year, month, day);
         datePickerDialog.show();
+    }
+
+    private void poptimePickerDialog() {
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+
+        timePickerDialog = new TimePickerDialog(ChangeReminder.this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                timeExt.setText(String.format("%02d:%02d", hourOfDay, minute));
+            }
+        }, hour, minute, true);
+        timePickerDialog.show();
     }
 }
